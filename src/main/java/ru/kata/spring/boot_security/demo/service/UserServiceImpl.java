@@ -14,7 +14,6 @@ import ru.kata.spring.boot_security.demo.repository.UsersRepository;
 import java.util.List;
 import java.util.Objects;
 
-
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
@@ -78,4 +77,5 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(int id) {
         usersRepository.deleteById(id);
     }
+
 }
