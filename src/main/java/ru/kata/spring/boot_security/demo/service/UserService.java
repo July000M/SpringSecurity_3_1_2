@@ -10,7 +10,7 @@ public interface UserService {
 
     List<User> getAllUsers();
 
-    void saveUser(User user);
+    void saveUser(User user) throws Exception;
 
     User getUser(int id);
 

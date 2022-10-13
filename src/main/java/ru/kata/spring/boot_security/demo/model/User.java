@@ -17,7 +17,7 @@ public class User implements UserDetails {
     @Column(length = 100)
     private int id;
 
-    @Column(length = 100)
+    @Column(length = 8, unique = true)
     private String name;
 
     @Column(length = 100)

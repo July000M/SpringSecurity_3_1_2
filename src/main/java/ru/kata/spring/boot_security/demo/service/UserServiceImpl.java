@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
         if (Objects.isNull(userPassword) || Objects.equals("", userPassword)) {
             String oldPassword = usersRepository.findById(user.getId())
                     .map(User::getPassword)
-                    .orElse(null);
+                    .orElseThrow(() -> new RuntimeException("User not found"));
             user.setPassword(oldPassword);
         } else {
             encodePassword(user);
@@ -51,11 +51,7 @@ public class UserServiceImpl implements UserService {
         usersRepository.save(user);
     }
 
-    private void encodePassword(User user) {
-        String encodedPassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(encodedPassword);
-    }
-
+    @Override
     public List<Role> getListRoles() {
         return roleRepository.findAll();
     }
@@ -70,12 +66,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUser(int id) {
         return usersRepository.findById(id)
-                .orElse(null);
+                .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
     @Override
     public void deleteUser(int id) {
         usersRepository.deleteById(id);
+    }
+
+
+    private void encodePassword(User user) {
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
     }
 
 }
