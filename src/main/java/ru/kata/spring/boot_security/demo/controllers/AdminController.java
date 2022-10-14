@@ -35,7 +35,7 @@ public class AdminController {
     }
 
     @PostMapping
-    public String createUser(@ModelAttribute("user") User user) throws Exception {
+    public String createUser(@ModelAttribute("user") User user) {
         userService.saveUser(user);
         return "redirect:/admin";
     }
@@ -48,7 +48,7 @@ public class AdminController {
     }
 
     @PostMapping("/{id}")
-    public String update(@ModelAttribute("user") User user) throws Exception {
+    public String update(@ModelAttribute("user") User user) {
         userService.saveUser(user);
         return "redirect:/admin";
     }
