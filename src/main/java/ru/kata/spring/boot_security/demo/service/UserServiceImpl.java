@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
-@Transactional
 public class UserServiceImpl implements UserService {
 
     private final UsersRepository usersRepository;
@@ -37,6 +36,7 @@ public class UserServiceImpl implements UserService {
         return usersRepository.findAll();
     }
 
+    @Transactional
     @Override
     public void saveUser(User user) {
         String userPassword = user.getPassword();
@@ -70,6 +70,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void deleteUser(int id) {
         usersRepository.deleteById(id);
     }
